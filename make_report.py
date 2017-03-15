@@ -8,7 +8,7 @@ from wand.color import Color
 def create_pdf(input_filename):
     process = subprocess.Popen([
         'pdflatex',   # Or maybe 'C:\\Program Files\\MikTex\\miktex\\bin\\latex.exe
-        # '-quiet', #Remove excess output
+         '-quiet', #Remove excess output
         #'-output-format=pdf',
         #'-job-name=' + output_filename,
         input_filename])
