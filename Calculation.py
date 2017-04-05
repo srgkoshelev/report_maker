@@ -22,9 +22,12 @@ Title = 'Trapped volume relief calculation for HAB Transfer lines'
 Assumptions = [
 	'Piping consists of horizontal and vertical sections',
 	'Flex hoses on the top are considered to be vertical',
-	'Vacuum is spoiled by air or fluid vapor',
+	'Vacuum is spoiled by air or fluid vapor; Vacuum jacket is ignored',
 	#'Heat load is calculated in regards to average diameter between inner pipe and vaccum jacket',
 	'The piping is considered to be a vessel with cryogenic liquid for maximum 110\% overpressure i.e. calculations are based on CGA S-1.3-2008 6.2.2',
+	'Each transfer line consists of 2 piping spools. Both spools are affected at the same time (conservative approach)',
+	'Pressure drop is calculated for required flow through total length of piping',
+
 ]
 
 
@@ -58,7 +61,7 @@ Conv_flow = {'fluid':'air', 'T' : T_room, 'P':1*atm} #Flow outside piping for co
 
 #Relief section
 
-Q_avail = 5*ft**3/min
+Q_avail = 157.5*ft**3/min
 
 
 
@@ -66,7 +69,7 @@ Q_avail = 5*ft**3/min
 
 
 
-
+####Calculation
 
 P_fr = 1.1*P_set
 
@@ -104,6 +107,7 @@ for Pipe in Piping:
 Q_tot = 0*ft**3/min
 for Pipe in Piping:
 	Q_tot += Q_vac(Pipe, Conv_flow, P_fr)
+Danger = 'Vacuum loss'
 
 prop = rp.setup('def', fluid)
 x = prop.get('x', [1])

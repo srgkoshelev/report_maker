@@ -65,10 +65,10 @@ with open('report.tex', 'w') as file:
 	keys = [('OD', 1*inch), ('L', 1*ft), ('Orientation', )] #Icouldn't find a way to transform 'ft' string into unit ft
 
 	if Danger == 'Vacuum loss':
-		keys.append([('q_conv', 1*W), ('q_rad', 1*W)])
+		keys.extend([('q_conv', 1*W), ('q_rad', 1*W)])
 
 	elif Danger == 'Air condensation':
-		keys.append(('q_cond', 1*W))
+		keys.extend([('q_cond', 1*W), ])
 	Header = ['Section']
 	for key in keys:
 		tex_key = key[0]
@@ -132,6 +132,10 @@ with open('report.tex', 'w') as file:
 	file.write("\n\n" r"\end{document}%" "\n")
 
 
+
+
+
+
 def create_pdf(input_filename):
     process = subprocess.Popen([
         'pdflatex',   # Or maybe 'C:\\Program Files\\MikTex\\miktex\\bin\\latex.exe
@@ -148,18 +152,19 @@ with Image(filename='report.pdf', resolution = 300) as img: #converting PDF to p
 	with img.convert('png') as converted:
 		converted.save(filename = 'page.png')
 
-for filename in fnmatch.filter(os.listdir('.'), 'page*[0-9].png'): #Making changes to each png, e.g. setting white background, rescaling
+for filename in fnmatch.filter(os.listdir('.'), 'page*.png'): #Making changes to each png, e.g. setting white background, rescaling
 	with Image(filename = filename) as pngimg:
 		with Image(width=pngimg.width, height=pngimg.height, background=Color("white")) as bg: #create background image size of the original, filled with white
 			bg.composite(pngimg,0,0) #compose two images and keep as bg
 			bg.transform('100%', '50%') #crop too 100%, scale to 50%
-			bg.save(filename = 'clean_'+filename)
+			bg.save(filename = fluid.lower()+' '+filename)
 	os.remove(filename)
 
 
 
 extensions = ['tex', 'pdf', 'aux', 'log']
-for filename in ('report'+x for x in extensions): #deleting garbage
+# extensions = [ 'pdf',]
+for filename in ('report.'+x for x in extensions): #deleting garbage
 	if os.path.isfile(filename):
 		os.remove(filename)
 
