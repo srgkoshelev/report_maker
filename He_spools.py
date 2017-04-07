@@ -1,7 +1,8 @@
 #!python3
 #Description of piping used in the system
 from natu.units import inch, ft, m, cm
-Piping = [{'ID':1*inch,
+#Piping is set up as a list of sections, each section is a list of pipes (dictionaries)
+Piping = [[{'ID':1*inch, #Top Transfer Line spool
 			'OD':1*inch,
 			'L':150*inch,
 			'VJ':2.5,
@@ -9,7 +10,7 @@ Piping = [{'ID':1*inch,
 			'Corrugated':True, #Corrugated or straight
 			},
 
-			{'D_nom':1,
+			{'D_nom':1, #Top Transfer Line spool
 			'SCH':5,
 			'L':16*inch,
 			'VJ':2.5,
@@ -17,7 +18,7 @@ Piping = [{'ID':1*inch,
 			'Corrugated':False, #Corrugated or straight
 			},
 
-			{'D_nom':1,
+			{'D_nom':1, #Top Transfer Line spool
 			'SCH':5,
 			'L':64*inch,
 			'VJ':2.5,
@@ -25,7 +26,7 @@ Piping = [{'ID':1*inch,
 			'Corrugated':False, #Corrugated or straight
 			},
 
-			{'D_nom':1,
+			{'D_nom':1, #Top Transfer Line spool
 			'SCH':5,
 			'L':60*inch,
 			'VJ':2.5,
@@ -33,15 +34,16 @@ Piping = [{'ID':1*inch,
 			'Corrugated':False, #Corrugated or straight
 			},
 
-			{'D_nom':1,
+			{'D_nom':1, #Top Transfer Line spool
 			'SCH':5,
 			'L':173*inch,
 			'VJ':2.5,
 			'Orientation':'Vertical', #Handles vertical and horizontal cases
 			'Corrugated':False, #Corrugated or straight
 			},
+			],
 
-			{'D_nom':1,
+			[{'D_nom':1, #Bottom Transfer Line spool
 			'SCH':5,
 			'L':50.75*inch,
 			'VJ':2*inch,
@@ -49,7 +51,7 @@ Piping = [{'ID':1*inch,
 			'Corrugated':False, #Corrugated or straight
 			},
 
-			{'OD':1*inch,
+			{'OD':1*inch, #Bottom Transfer Line spool
 			'ID':1*inch,
 			'L':18*inch,
 			'VJ':2.5,
@@ -57,7 +59,7 @@ Piping = [{'ID':1*inch,
 			'Corrugated':True, #Corrugated or straight
 			},
 
-			{'D_nom':1,
+			{'D_nom':1, #Bottom Transfer Line spool
 			'SCH':5,
 			'L':155*inch,
 			'VJ':2.5,
@@ -65,15 +67,15 @@ Piping = [{'ID':1*inch,
 			'Corrugated':False, #Corrugated or straight
 			},
 
-			{'D_nom':1,
+			{'D_nom':1, #Bottom Transfer Line spool
 			'SCH':5,
-			'L':64*inch,
+			'L':64.25*inch,
 			'VJ':2*inch,
 			'Orientation':'Horizontal', #Handles vertical and horizontal cases
 			'Corrugated':False, #Corrugated or straight
 			},
 
-			{'OD':1*inch,
+			{'OD':1*inch, #Bottom Transfer Line spool
 			'ID':1*inch,
 			'L':83*inch,
 			'VJ':2.5,
@@ -81,7 +83,7 @@ Piping = [{'ID':1*inch,
 			'Corrugated':True, #Corrugated or straight
 			},
 			
-			{'D_nom':1,
+			{'D_nom':1, #Bottom Transfer Line spool
 			'SCH':5,
 			'L':15*inch,
 			'VJ':2.5,
@@ -89,7 +91,7 @@ Piping = [{'ID':1*inch,
 			'Corrugated':False, #Corrugated or straight
 			},
 
-			{'D_nom':1,
+			{'D_nom':1, #Bottom Transfer Line spool
 			'type':'tube',
 			'wall':0.049*inch,
 			'L':30*inch,
@@ -97,8 +99,9 @@ Piping = [{'ID':1*inch,
 			'Orientation':'Vertical', #Handles vertical and horizontal cases
 			'Corrugated':False, #Corrugated or straight
 			},
+			],
 
-			{'D_nom':1,
+			[{'D_nom':1, #He spool
 			'type':'tube',
 			'wall':0.049*inch,
 			'L':13*inch,
@@ -107,7 +110,7 @@ Piping = [{'ID':1*inch,
 			'Corrugated':False, #Corrugated or straight
 			},
 			
-			{'D_nom':1,
+			{'D_nom':1, #He spool
 			'type':'tube',
 			'wall':0.049*inch,
 			'L':30*inch,
@@ -115,7 +118,9 @@ Piping = [{'ID':1*inch,
 			'Orientation':'Vertical', #Handles vertical and horizontal cases
 			'Corrugated':False, #Corrugated or straight
 			},
-
+			],
 			
 
 		]
+
+Sections = ['Transfer Line Top spool', 'Transfer Line Bottom spool', 'He spool'] #Names of sections
