@@ -2,7 +2,7 @@
 #Description of piping used in the system
 from natu.units import inch, ft, m, cm
 #Piping is set up as a list of sections, each section is a list of pipes (dictionaries)
-Piping = [[{'ID':1*inch, #Top Transfer Line spool
+Piping = [{'ID':1*inch, #Top Transfer Line spool
 			'OD':1*inch,
 			'L':150*inch,
 			'VJ':2.5,
@@ -41,9 +41,8 @@ Piping = [[{'ID':1*inch, #Top Transfer Line spool
 			'Orientation':'Vertical', #Handles vertical and horizontal cases
 			'Corrugated':False, #Corrugated or straight
 			},
-			],
 
-			[{'D_nom':1, #Bottom Transfer Line spool
+			{'D_nom':1, #Bottom Transfer Line spool
 			'SCH':5,
 			'L':50.75*inch,
 			'VJ':2*inch,
@@ -99,9 +98,8 @@ Piping = [[{'ID':1*inch, #Top Transfer Line spool
 			'Orientation':'Vertical', #Handles vertical and horizontal cases
 			'Corrugated':False, #Corrugated or straight
 			},
-			],
 
-			[{'D_nom':1, #He spool
+			{'D_nom':1, #He spool
 			'type':'tube',
 			'wall':0.049*inch,
 			'L':13*inch,
@@ -118,9 +116,9 @@ Piping = [[{'ID':1*inch, #Top Transfer Line spool
 			'Orientation':'Vertical', #Handles vertical and horizontal cases
 			'Corrugated':False, #Corrugated or straight
 			},
-			],
 			
 
 		]
 
-Sections = ['Transfer Line Top spool', 'Transfer Line Bottom spool', 'He spool'] #Names of sections
+Section_names = ['Transfer Line Top spool', 'Transfer Line Bottom spool', 'He spool'] #Names of sections
+Section_start = [5, 12] #indeces of the start of appropriate section
