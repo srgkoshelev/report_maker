@@ -58,22 +58,22 @@ def create_pdf(input_filename):
 create_pdf ('report.tex')
 
 
-with Image(filename='report.pdf', resolution = 200) as img: #converting PDF to png, no changes could be successfully done to images at this point
-	with img.convert('png') as converted:
-		converted.save(filename = 'page.png')
+# with Image(filename='report.pdf', resolution = 200) as img: #converting PDF to png, no changes could be successfully done to images at this point
+# 	with img.convert('png') as converted:
+# 		converted.save(filename = 'page.png')
 
-# for filename in fnmatch.filter(os.listdir('.'), 'page*.png'): #Making changes to each png, e.g. setting white background, rescaling
-# 	with Image(filename = filename) as pngimg:
-# 		with Image(width=pngimg.width, height=pngimg.height, background=Color("white")) as bg: #create background image size of the original, filled with white
-# 			bg.composite(pngimg,0,0) #compose two images and keep as bg
-# 			bg.transform('100%', '60%') #crop too 100%, scale to 50%
-# 			bg.save(filename = 'clean_' + filename)
-# 	os.remove(filename)
+# # for filename in fnmatch.filter(os.listdir('.'), 'page*.png'): #Making changes to each png, e.g. setting white background, rescaling
+# # 	with Image(filename = filename) as pngimg:
+# # 		with Image(width=pngimg.width, height=pngimg.height, background=Color("white")) as bg: #create background image size of the original, filled with white
+# # 			bg.composite(pngimg,0,0) #compose two images and keep as bg
+# # 			bg.transform('100%', '60%') #crop too 100%, scale to 50%
+# # 			bg.save(filename = 'clean_' + filename)
+# # 	os.remove(filename)
 
 
 
-extensions = ['tex', 'pdf', 'aux', 'log']
-os.remove('body.tex')
-for filename in ('report.'+x for x in extensions): #deleting garbage
-	if os.path.isfile(filename):
-		os.remove(filename)
+# extensions = ['tex', 'pdf', 'aux', 'log']
+# os.remove('body.tex')
+# for filename in ('report.'+x for x in extensions): #deleting garbage
+# 	if os.path.isfile(filename):
+# 		os.remove(filename)
