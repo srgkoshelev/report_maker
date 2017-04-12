@@ -6,7 +6,7 @@
 	\item Vacuum is spoiled by air or fluid vapor; Vacuum jacket is ignored.
 	\item Heat load is calculated in regards to outer diameter of the inner pipe. MLI thickness is ignored.
 	\item The piping is considered to be a vessel with cryogenic liquid for maximum 110\% overpressure i.e. calculations are based on CGA S-1.3-2008 6.2.2.
-	\item Each transfer line consists of 2 spools. Additionally, respective Piping spools are also considered. %Both spools are affected at the same time (conservative approach).
+	\item Each transfer line consists of 2 spools. Additionally, respective Piping spools are considered. %Both spools are affected at the same time (conservative approach).
 	% \item Pressure drop is calculated for required flow through total length of piping.
 \end{enumerate}
 
@@ -27,7 +27,7 @@ u=g/mol #numerical equivalent of atomic mass unit
 
 Initial conditions
 <<>>=
-fluid = 'Helium'
+fluid = 'Nitrogen'
 P_set = 60*psig #set pressure
 
 T_room = 100*degF #room temperature based on CGA S-1.3 6.2.2
@@ -37,7 +37,7 @@ Conv_flow = {'fluid':'air', 'T' : T_room, 'P':1*atm} #Flow outside #piping for c
 
 Trapped volume relief calculation considers vacuum failure for on of the sections. Piping sections:
 <<echo=False>>=
-from He_spools import * #piping as per convention
+from LN2_spools import * #piping as per convention
 for number, Section_name in enumerate(Section_names):
 	print ("Section #{0}: {1}".format(number, Section_name))
 @
@@ -67,10 +67,10 @@ for Pipe in Piping:
 	Pipe.update({'fluid':Internal_fluid.copy()})
 @
 
-Since each section has separate vaccum space multiple fail is unlikely. Calculating required relief capacity for each section and determining maximum requirement:
+Since each section has separate vaccum space multiple fails are unlikely. Calculating required relief capacity for each section and determining maximum requirement:
 
 <<>>=
-Sections = piping.make_sections(Piping, Section_start)
+Sections = cga.make_sections(Piping, Section_start)
 Q_tot = 0*ft**3/min
 for Section in Sections:
 	Q_sect = 0*ft**3/min
@@ -91,10 +91,10 @@ for Section in Sections:
 	Q_tot = max(Q_tot, Q_sect)
 @
 <<echo=False>>=
-print ("Required relief valve with P_set = {:g} and capacity {:g} of standard air.".format(P_set, Q_tot))
+print ("Required relief valve with P_set = {:.3g} and capacity {:.3g} of standard air.".format(P_set, Q_tot))
 @
 
-
+\newpage
 Detailed information on piping sections, dimensions and heat loads:
 <<echo=False>>=
 for Section, Name in zip (Sections, Section_names):
